@@ -1,0 +1,123 @@
+<template>
+  <section class="wrapper header-wrapper">
+    <header class="my-header-wrapper">
+      <section class="my-header-wrapper__left">
+        <img class="my-header-wrapper__left--logo" :src="logoImg" alt="logo">
+      </section>
+      <section class="my-header-wrapper__right">
+        <span
+          @click="handleClickJump(item, index)"
+          class="my-header-wrapper__right--item"
+          v-for="(item, index) in routers"
+          :key="index"
+          :class="[
+            currLinkIndex == index ? 'is-active' : 'is-unactive'
+          ]">
+          {{item.label}}
+        </span>
+        <a :href="TARGET_HTTP" target="_self" class="my-header-wrapper__right--btn">返回首页</a>
+      </section>
+    </header>
+  </section>
+</template>
+<script>
+import {mapState, mapActions, mapGetters, mapMutations} from 'vuex'
+const logoImg = require('@/assets/imgs/logo.png')
+const TARGET_HTTP = 'https://www.squrab.com'
+const routers = [
+  {
+    label: '在线下单',
+    links: ['index'],
+    isShowLinkActive: true
+  },
+]
+
+export default {
+  props: {},
+  name: 'LayoutHeader',
+  components: {},
+  computed: {
+    path(){
+      return this.$route.path.replace(/^\//, '')
+    }
+  },
+  data(){
+    return {
+      logoImg,
+      routers,
+      TARGET_HTTP,
+      currLinkIndex: 0,
+    }
+  },
+  methods: {
+    handleClickJump(item, index){
+      let {label} = item
+      this.currLinkIndex = index
+      switch(label) {
+        case '下载App' : return window.location.href = 'https://fir.im/jdtt'
+        default : return true
+      }
+    },
+  },
+  created(){},
+  mixins: []
+}
+</script>
+<style lang="scss" scoped>
+@import '@/assets/style/mixin.scss';
+@import '@/assets/style/color.scss';
+.header-wrapper {
+  @include b(header-wrapper) {
+    @include flex($dir: row, $align: center, $justify: space-between);
+    width: inherit;
+    height: 105px;
+    padding: 0 18%;
+    background-color: $b-wihte;
+    border-bottom: 1px solid $b-base;
+    @include e(left) {
+      & > img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    @include e(right) {
+      @include flex($dir: row, $align: center, $justify: flex-end);
+      flex: 1;
+      height: 100%;
+      padding: 0 10%;
+      text-align: center;
+      box-sizing: border-box;
+      @include m(item) {
+        display: inline-block;
+        height: 100%;
+        line-height: 105px;
+      }
+
+      @include m(btn) {
+        margin-left: 6%;
+        padding: 4px 10px;
+        word-break: keep-all;
+        background-color: $base;
+        color: $b-wihte;
+        border-radius: 4px;
+        font-size: 14px;
+        &:hover {
+          cursor: pointer;
+          text-decoration: none;
+          background-color: rgba(31,162,255, .5);
+        }
+      }
+    }
+
+    .is-active{
+      color: $base;
+      border-bottom: 1px solid $base;
+      &::before {
+        top: 2px;
+      }
+    }
+}
+
+}
+</style>

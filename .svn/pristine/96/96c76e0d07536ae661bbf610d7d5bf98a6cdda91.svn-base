@@ -1,0 +1,29 @@
+<template>
+    <section class='my-about-info'>
+        <my-list-card-schema></my-list-card-schema>
+    </section>
+</template>
+
+<script>
+ import MyListCardSchema from '@/views/dashboardManage/schema/listCard';
+ export default{
+    name: 'MyAboutInfo',
+    components: {
+        MyListCardSchema
+    },
+    props: {},
+    watch: {},
+    computed: {},
+    data(){
+        return {
+        }
+    },
+    methods: {},
+    created(){},
+    mixins: []
+ }
+</script>
+
+<style scoped lang='scss'>
+
+</style>

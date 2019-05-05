@@ -1,0 +1,6 @@
+VUE_APP_NODE_ENV='production'
+VUE_APP_CURRENTMODE='production'
+VUE_APP_BASE_URL='/'
+VUE_APP_HTTP='http://bsapi.squrab.com/api/user/'
+VUE_APP_TARGET_HTTP='http://zs.squrab.com/index/callback'
+outputDir='dist'

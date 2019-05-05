@@ -1,0 +1,136 @@
+<template>
+    <section class='my-about-info'>
+        <my-list-card-schema class="about-info-box about-info-box0">
+            <section class="my-ab-info-top">
+                <h3 class="my-ab-info-top__title">Android高级开发工程师</h3>
+                <p class="my-ab-info-top__money">8-12k</p>
+            </section>
+        </my-list-card-schema>
+
+        <my-list-card-schema class="about-info-box">
+            <section class="my-ab-info-box">
+                <section 
+                    v-for="(item, index) in List"
+                    :key="index"
+                    class="my-ab-info-box__item">
+                    <p class="my-ab-info-box__item--title">{{item.label}}</p>
+                    <article class="my-ab-info-box__item--article" v-html="item.content"></article>
+                </section>
+            </section>
+        </my-list-card-schema>
+    </section>
+</template> 
+
+<script>
+ const List = [
+     {
+         label: '岗位职责',
+         content: `1、全面负责新公司技术层面的整体运营,制定研发战略和计划、全面实施，并与业务发展需求、系统现状等充分结合；</br>
+                   2、全面负责新公司各项平台日常安全运营、系统维护、升级，确保公司各项业务能在平台上安全、有序开展，保障系统和数据的安全、稳定；</br>
+                   3、负责各项平台的研发与核心技术管理工作，组织制定和实施重大技术决策和技术方案；</br>
+                   4、研究决策平台技术发展路线，规划公司产品的技术构架，负责整体及各平台技术框架的选型与搭建，程序开发及技术攻坚；</br>
+                   5、主导公司互联网/移动互联网/软件平台技术架构、数据库结构、业务逻辑等编码工作；</br>
+                   6、负责制定技术开发规范、编码规范等技术团队工作规范和工作流程，并跟踪开发过程实际合规性；</br>
+                 `
+     },
+     {
+         label: '任职要求',
+         content: `
+                    1、统招大学本科以上学历，计算机相关专业。</br>
+                    2、10年以上开发行业经验，扎实的技术基础，精通相关软件开发技术，具备深厚的技术功底；</br>
+                    3、精通系统架构、数据架构、应用软件架构和高并发及系统稳定性等，熟悉系统架构设计与开发工作所涉及到相关软件语言及开发工具；</br>
+                    4、具有对开发部门员工核心能力进行提升培训的能力，具有指导程序员进行项目开发和实施的能力；</br>
+                    5、有大型公司系统化管理和标准流程规范经验者优先；有物流或者同城配送相关经验优先。</br>
+                  `
+     }
+ ]
+ import Scroll2Top from '@/mixins/scroll';
+ import MyListCardSchema from '@/views/dashboardManage/schema/listCard';
+ export default{
+    name: 'MyAboutInfo',
+    components: {
+        MyListCardSchema
+    },
+    data(){
+        return {
+            List
+        }
+    },
+    methods: {},
+    created(){},
+    mixins: [Scroll2Top]
+ }
+</script>
+
+<style scoped lang='scss'>
+@import '@/assets/style/mixin.scss';
+@import '@/assets/style/color.scss';
+@include b(about-info) {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 80px;
+    overflow: hidden;
+    background-color: #F7F5F5;
+}
+@include b(ab-info-top){
+   @include e(title) {
+       font-size: 24px;
+       line-height: 30px;
+       font-stretch: normal;
+       color: #1a1a1a;
+   } 
+   @include e(money) {
+       font-size: 20px;
+       letter-spacing: 1px;
+       color: #1a1a1a;
+   }
+}
+
+@include b(ab-info-box) {
+   @include e(item) {
+       margin-bottom: 65px;
+       
+       @include m(title) {
+           position: relative;
+           margin-bottom: 30px;
+           padding-left: 10px;
+           font-size: 18px;
+           font-weight: 600;
+           font-stretch: normal;
+           color: #1a1a1a;
+
+           &::before {
+               position: absolute;
+               left: -8px;
+               content: '';
+               padding: 12px 3px;
+               border-radius: 4px;
+               background-color: $base;
+           }
+       }
+       @include m(article) {
+           font-size: 16px;
+           line-height: 30px;
+           font-stretch: normal;
+       }
+       &:last-of-type {
+           margin-bottom: 0;
+       }
+   } 
+}
+
+.about-info-box {
+    padding: 60px 50px;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 2px #eee;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.about-info-box0 {
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    max-height: 148px;
+    line-height: 2;
+}
+</style>
