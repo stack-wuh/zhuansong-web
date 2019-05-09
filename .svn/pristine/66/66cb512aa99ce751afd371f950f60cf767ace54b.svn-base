@@ -1,5 +1,0 @@
-VUE_APP_NODE_ENV='production'
-VUE_APP_CURRENTMODE='production'
-VUE_APP_BASE_URL='/'
-VUE_APP_HTTP='http://bsapi.squrab.com/api/user/'
-outputDir='dist'

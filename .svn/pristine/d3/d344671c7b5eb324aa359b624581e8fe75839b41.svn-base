@@ -1,4 +1,0 @@
-$el-separator: '__';
-$mo-separator: '--';
-$namespace: 'my';
-$state-prefix: 'is-';

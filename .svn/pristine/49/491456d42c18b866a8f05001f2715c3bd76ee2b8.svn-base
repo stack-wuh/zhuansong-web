@@ -1,6 +1,0 @@
-.signin-wrapper {
-  .el-form-item__error {
-    width: 70%;
-    margin-left: 15%;
-  }
-}
