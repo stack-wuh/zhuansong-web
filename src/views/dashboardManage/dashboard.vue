@@ -23,7 +23,7 @@
                       <li class="index-rg__list--item">
                           <div>
                               <img src="../../assets/imgs/icon_ios.png" alt="icon_ios">
-                              <span>iOS</span>
+                              <span class="index-rg__list--item-text">iOS</span>
 
                               <div class="index-rg__list--item-qr">
                                 <img src="../../assets/imgs/index/ios.png" alt="ios">
@@ -31,7 +31,7 @@
                           </div>
                           <div>
                               <img src="../../assets/imgs/icon_android.png" alt="icon_android">
-                              <span>Android</span>
+                              <span class="index-rg__list--item-text">Android</span>
 
                               <div class="index-rg__list--item-qr">
                                 <img src="../../assets/imgs/index/android.png" alt="android">
@@ -126,6 +126,12 @@
             &--item {
                 @include flex($dir: row, $align: center);
                 margin-bottom: 50px;
+                &-text {
+                  flex: 1;
+                  text-align: center;
+                  // border:1px solid red;
+                  // color: red;
+                }
                 & > div{
                   position: relative;
                     @include flex($dir: row, $align:center);
@@ -136,7 +142,6 @@
                     border: 1px solid #fff;
                     border-radius: 4px;
                     box-sizing: border-box;
-
                     & > img {
                         margin-right: 15px;
                     }

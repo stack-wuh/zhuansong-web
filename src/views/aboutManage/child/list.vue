@@ -1,9 +1,9 @@
 <template>
     <section class='my-about-list'>
-        <el-table :data="List" border stripe>
+        <el-table :data="dataList" border stripe>
             <el-table-column align="center" label="职位名称" >
                 <template slot-scope="scope">
-                    <span @click="handleJump(scope.row)" class="my-about-list__name">{{scope.row.name}} >></span>
+                    <span @click="handleJump(scope.row)" class="my-about-list__name">{{scope.row.port}} >></span>
                 </template>
             </el-table-column>
             <el-table-column align="center" label="职位类别" prop="type"></el-table-column>
@@ -14,67 +14,30 @@
 </template>
 
 <script>
- const List = [
-     {
-         name: 'Android高级开发工程师',
-         type: '前端开发',
-         city: '武汉',
-         time: '2019-04-12'
-     },
-         {
-         name: 'iOS高级开发工程师',
-         type: '前端开发',
-         city: '武汉',
-         time: '2019-04-14'
-     },
-     {
-         name: '市场部',
-         type: '市场',
-         city: '武汉',
-         time: '2019-04-14'
-     },
-     {
-         name: '互联网运营专员',
-         type: '运营',
-         city: '武汉',
-         time: '2019-04-14'
-     },
-     {
-         name: '城市运营经理',
-         type: '运营',
-         city: '武汉',
-         time: '2019-04-14'
-     },
-     {
-         name: '测试工程师',
-         type: '技术',
-         city: '武汉',
-         time: '2019-04-14'
-     },
-     {
-         name: '人事经理' ,
-         type: '人事行政',
-         city: '武汉',
-         time: '2019-04-14'
-     },
- ]
+ import {mapMutations, mapState} from 'vuex'
  export default{
     name: 'MyAboutList',
     components: {},
     props: {},
     watch: {},
-    computed: {},
+    computed: {
+      ...mapState({
+        dataList: state => state.Port.data
+      })
+    },
     data(){
-        return {
-            List
-        }
+        return {}
     },
     methods: {
+        ...mapMutations(['GET_TABLE_LIST']),
         handleJump(item) {
-            this.$router.push({path: '/about/index'})
-        }
+            this.$router.push({path: '/about/index', query: {id: item.id}})
+        },
+
     },
-    created(){},
+    created(){
+      this.GET_TABLE_LIST()
+    },
     mixins: []
  }
 </script>

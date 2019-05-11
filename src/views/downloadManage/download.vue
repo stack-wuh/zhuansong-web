@@ -44,10 +44,10 @@
                 let {info, list} = res.data.data
                 if(info.Mobile && info.Version.toLocaleLowerCase() == 'ios') {
                     this.isShowBtn = 1
-                    this.reLoadUrl = list.app.find(kk => kk.app_type == 7).download_path
+                    this.reLoadUrl = list.find(kk => kk.app_type == 2).download_path
                 }else if(info.Mobile && info.Version.toLocaleLowerCase() == 'android') {
                     this.isShowBtn = 0
-                    this.reLoadUrl = list.app.find(kk => kk.app_type == 6).download_path
+                    this.reLoadUrl = list.find(kk => kk.app_type == 1).download_path
                 }
             })
         },
