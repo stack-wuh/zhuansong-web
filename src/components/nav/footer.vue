@@ -21,7 +21,10 @@
       </section>
     </section>
     <section class="my-ft-bottom">
-       <small class="my-ft-bottom__copyright">Copyright©2018-2019&nbsp;&nbsp;&nbsp;www.zhuansong.pro All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;鄂ICP备18028038号-2</small>
+      <small class="my-ft-bottom__copyright">
+        专送Pro&nbsp; www.zhuansong.pro 版权所有: 武汉方兔网络科技有限公司@2018-2019 鄂ICP备18028038号-2
+      </small>
+       <!-- <small class="my-ft-bottom__copyright">Copyright©2018-2019&nbsp;&nbsp;&nbsp;www.zhuansong.pro All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;鄂ICP备18028038号-2</small> -->
     </section>
   </section>
 </template>
