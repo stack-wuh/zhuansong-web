@@ -136,7 +136,7 @@
         height: 100%; 
 
         @include e(auto-complete) {
-            width: 100%;
+            width: 50%;
         }
 
         @include e(input) {
