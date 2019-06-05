@@ -39,7 +39,11 @@
                 <el-form-item 
                     label="下单手机号"
                     prop="phone">
-                    <el-input v-model="form_signin.phone" placeholder="请编辑有效手机号"></el-input>
+                    <el-input 
+                        v-model="form_signin.phone" 
+                        style="width: calc(90% - 116px)"
+                        placeholder="请编辑有效手机号">
+                    </el-input>
                 </el-form-item>
                 <el-form-item
                     label="验证码"
@@ -209,7 +213,7 @@
             this.form_order.coupon_id = this.couponList.slice(0, 1)[0].id
         },
         weight(){
-           this.currentComputedMoney =  this.weight > 4 ? (this.weight-4) * 2 : 0 
+           this.currentComputedMoney =  this.weight > 5 ? (this.weight-5) * 2 : 0 
         }
     },
     computed: {
@@ -219,7 +223,7 @@
             currentTotalMoney: state => state.Index.currentMoney
         }),
         currentWeight(){
-            return this.weight > 4 ? this.weight : '<5'
+            return this.weight > 5 ? this.weight : '5'
         },
         currentCouponId(){
             return this.couponList.slice(0,1)[0].id

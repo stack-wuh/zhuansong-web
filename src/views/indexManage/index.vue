@@ -148,7 +148,7 @@
                     lat: '',
                     formatted_address: ''
                 },
-                weight: 4,
+                weight: 5,
                 coupon_id: 0,
                 type: 1,
                 shipper: '',
@@ -166,7 +166,7 @@
             tokenObj: {}, // 缓存token的localStorage
             qrCode: null, // 二维码的instance
             visibleDialog: false, // 微信支付的dialog
-            currentWeight: 4, //传递物品重量
+            currentWeight: 5, //传递物品重量
         }
     },
     methods: {

@@ -31,23 +31,13 @@
                 </template>
                 <template v-else-if="item.type == 'inputrange'">
                     <el-input
-                        v-if="temp_weight > 4" 
+                        :max="MAX_WEIGHT"
+                        :min="MIN_WEIGHT"
                         class="my-input-number"
-                        v-model="temp_weight"
+                        v-model="temp_form.weight"
                         >
                         <i @click="handleReduce" slot="prepend" class="el-icon-minus"></i>
                         <i @click="handleAdd" slot="append" class="el-icon-plus"></i>
-                    </el-input>
-                    <el-input
-                        v-else 
-                        class="my-input-number"
-                        value="<5">
-                        <div class="my-input-number__pre-box" @click="handleReduce" slot="prepend">
-                            <i class="el-icon-minus"></i>
-                        </div>
-                        <div class="my-input-number__pre-box" @click="handleAdd" slot="append">
-                            <i class="el-icon-plus"></i>
-                        </div>
                     </el-input>
                     <span class="my-input__tips">KG</span>
                 </template>
@@ -67,7 +57,7 @@
 
 <script>
 const MAX_WEIGHT = 20
-const MIN_WEIGHT = 4
+const MIN_WEIGHT = 5
 
 import {mapMutations} from 'vuex'
  export default{
@@ -88,11 +78,6 @@ import {mapMutations} from 'vuex'
         }
     },
     inject: ['Toast'],
-    watch: {
-        tempWeight(){
-            this.temp_weight = this.temp_form.weight > 4 ? this.temp_form.weight : '<5'
-        }
-    },
     computed: {
         tempWeight(){
             return this.temp_form.weight
@@ -104,10 +89,10 @@ import {mapMutations} from 'vuex'
             MIN_WEIGHT,
             temp_form: {
                 goods_type: '',
-                weight: 4,
+                weight: 5,
                 note: ''
             },
-            temp_weight: 4
+            temp_weight: 5
         }
     },
     methods: {
@@ -129,10 +114,10 @@ import {mapMutations} from 'vuex'
             })
         },
         handleReduce(){
-            if(this.temp_form.weight > 4){
+            if(this.temp_form.weight > 5){
                 this.temp_form.weight--
-            }else if(this.temp_form.weight <=4) {
-                this.temp_form.weight = 4
+            }else if(this.temp_form.weight <= 5) {
+                this.temp_form.weight = 5
             }
             this.$emit('changeInput', this.temp_form.weight)
         },
