@@ -246,6 +246,7 @@
             form_order: {
                 coupon_id: 0
             },
+            timer: null,
             timer_count: 60,
             isBtnLoading: false,
             temp_pay_type: 'zhifubao',
@@ -263,14 +264,24 @@
         /**popover激活时获取验证码 */
         handleTogglePopover (){
             this.GetImgCode().then(res => {
-                this.isShowPopover = true
+                let {code, msg} = res
+                if(code === 10000) {
+                    this.isShowPopover = true
+                } else {
+                    Toast({type: 'error', msg, duration: 2000})
+                }
             })
         },
 
         /**重新获取验证码 */
         handleReloadCode(){
             this.GetImgCode().then(res => {
-                this.form_signin.captcha = ''
+                let {code, msg} = res
+                if(code === 10000) {
+                    this.form_signin.captcha = ''
+                } else {
+                    Toast({type: 'error', msg, duration: 2000})
+                }
             })
         },
 
@@ -283,8 +294,10 @@
 
         /**获取短信验证码 */
         handleClickPostMsg(){
-            let timer = null
-            if(timer) clearInterval(timer)
+            if(this.timer) {
+                this.timer_count = 60
+                clearInterval(this.timer)
+            } 
             if(!this.form_signin.captcha) {
                 this.isShowCodeTips = true
                 return
@@ -292,10 +305,15 @@
             this.$refs.myOrderInfoForm.validate(valid => {
                 if(valid) {
                     this.PostMsgCode(this.form_signin).then(res => {
+                        let {code, msg} = res
+                        if(code !== 10000) {
+                            Toast({type: 'error', msg, duration: 2000})
+                            return
+                        }
                         this.handleClosePopover()
                         this.$set(this.Rules.code[0], 'required', true)
                         this.isBtnLoading = true
-                        timer = setInterval(() => {
+                        this.timer = setInterval(() => {
                             if(this.timer_count > 0) {
                                 this.timer_count -- 
                             }else {

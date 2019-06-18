@@ -193,6 +193,10 @@
             setTimeout(() => {
                 let result = this.formResultStatus.slice(0,2).every(kk => kk)
                 this.PostUserLogin(e.form).then(res => {
+                    let {code, msg} = res
+                    if(code !== 10000) {
+                        return
+                    }
                     let local = localStorage
                     local.setItem('token', JSON.stringify(res.data))
                     let {token} = res.data
@@ -201,6 +205,10 @@
                     }
                     if(result) {
                         this.GetCouponInfo({form: this.form_order, token}).then(res => {
+                            let {code, msg} = res
+                            if(code !== 10000) {
+                                return
+                            }
                             this.form_order.coupon_id = this.couponList.slice(0,1)[0].id
                             this.SHOW_PAY_BOX = true
                         }) 
@@ -219,7 +227,10 @@
         handleClickToggle(){
             // this.isShowPopover = true
             this.GetImgCode().then(res => {
-                this.isShowPopover = true
+                let {code} = res
+                if(code === 10000) {
+                    this.isShowPopover = true
+                }
             })
         },
         /**获取短信验证码 */
@@ -232,6 +243,8 @@
                 return Taost({msg: '请输入图片验证码', type: 'error'})
             }
             this.PostMsgCode(this.form_signin).then(res => {
+                let {code} = res
+                if(code !== 10000) return
                 this.isShowPopover = false
                 this.isShowBtnLoading = true
                 timer = setInterval(() => {
@@ -378,6 +391,10 @@
                     this.form_order.recipient_address.detailed = r_detailed
                     local.setItem('local_form_order', JSON.stringify({...this.form_order, totalMoney: this.currentTotalMoney, additional: this.additional}))
                     this.PostOrder({token: token.token, form: this.form_order}).then(res => {
+                        let {code} = res
+                        if(code !== 10000) {
+                            return
+                        }
                         local.setItem('local_order_info', JSON.stringify(res))
                         switch (e.payType) {
                             case 'zhifubao':
