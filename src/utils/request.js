@@ -32,6 +32,10 @@ service.interceptors.response.use(
       // Message({message: msg, type: 'success', duration: 3 * 1000})
     }else {
       msg && Message({message: msg, type: 'error', duration: 3 * 1000})
+
+      if(code === 20001 || code === 40009) { // 登录过期, 清除token缓存
+        localStorage.removeItem('token')
+      }
     }
     // switch(response.status){
     //   case 200 : res.error && Message({message: res.error, type: 'success', duration: 3 * 1000}) 

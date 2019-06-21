@@ -2,7 +2,7 @@ import request from '@/utils/request';
 const TARGET_HTTP = 
     process.env.VUE_APP_CURRENTMODE == 'production' ? 
     process.env.VUE_APP_TARGET_HTTP : 
-    'http://192.168.0.112:19020/index/callback'
+    'http://192.168.0.108:19020/index/callback'
 
 export const getClassifyList = () =>
     request({
