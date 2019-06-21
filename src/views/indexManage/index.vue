@@ -402,7 +402,7 @@
                                     const div = document.createElement('div')
                                     div.innerHTML = res
                                     document.body.appendChild(div)
-                                    const elem = document.getElementById('alipaysubmit')
+                                    const elem = document.getElementById('alipay_submit')
                                     elem.submit()
                                     }).catch(err => {
                                     //Todo 支付宝调取失败
